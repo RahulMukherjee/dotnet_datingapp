@@ -3,12 +3,11 @@ using System.Linq;
 using API.Data;
 using API.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UsersController: ControllerBase
+    public class UsersController: BaseAPIController
     {
         private readonly DataContext _context;
         public UsersController(DataContext context) { 
@@ -16,12 +15,14 @@ namespace API.Controllers
         }
 
         //Endpoint : /api/users
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers() { 
             return await _context.Users.ToListAsync();
         }
 
         //Endpoint : /api/users/{id}
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUsers(int id)
         {
