@@ -1,0 +1,20 @@
+<div class="text-center">
+    <div *ngIf="!showRegistration" class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Hello There !!</h1>
+          <p class="lead text-muted">
+              Want to match profile and start dating, Register Today !!
+          </p>
+          <p>
+            <a href="#" class="btn btn-primary my-2 mr-2" (click)="toggleRegistration()">Register</a>
+            <a href="#" class="btn btn-secondary my-2">Learn More..</a>
+          </p>
+        </div>
+      </div>
+
+      <div *ngIf="showRegistration" class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <app-register (cancelRegistration)="cancel($event)"></app-register>
+        </div>
+      </div>
+</div>
